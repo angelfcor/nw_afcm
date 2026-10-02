@@ -23,6 +23,7 @@ $cuentasResultados = getCuentasExtraidas();
     <h1>Analizador de Cuentas</h1>
     <form action="form.php" method="post">
         <label for="txtCuenta">Cuentas</label>
+        <br/>
         <textarea name="txtCuenta" id="txtCuenta" rows="10" cols="50"
             placeholder="Pega el texto a analizar aqui..."
         ><?php echo $txtCuenta;?></textarea>
@@ -31,10 +32,14 @@ $cuentasResultados = getCuentasExtraidas();
     </form>
 
     <h2>Resultados del Analisis</h2>
-    <pre>
-        <?php
-        print_r($cuentasResultados);
-        ?>
-    </pre>
+     <?php if (!empty($cuentasResultados)): ?>
+        <ol>
+            <?php foreach ($cuentasResultados as $cuenta): ?>
+                <li><?php echo $cuenta; ?></li>
+            <?php endforeach; ?>
+        </ol>
+    <?php else: ?>
+        <p>No se han encontrado cuentas aún.</p>
+    <?php endif; ?>
 </body>
 </html>
