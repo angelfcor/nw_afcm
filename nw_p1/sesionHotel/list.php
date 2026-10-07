@@ -13,9 +13,11 @@ $reservas = getReservas();
 
 <body>
     <h1>Reservas</h1>
-    <table border="1">
+    <table>
         <tr>
-            <th>Cliente</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Teléfono</th>
             <th>Personas</th>
             <th>Habitaciones</th>
             <th>Tipo</th>
@@ -30,7 +32,9 @@ $reservas = getReservas();
         <?php
         foreach ($reservas as $r) {
             echo "<tr>";
-            echo "<td>" . $r["cliente"] . "</td>";
+            echo "<td>" . $r["nombre"] . "</td>";
+            echo "<td>" . $r["correo"] . "</td>";
+            echo "<td>" . $r["telefono"] . "</td>";
             echo "<td>" . $r["personas"] . "</td>";
             echo "<td>" . $r["habitaciones"] . "</td>";
             echo "<td>" . $r["tipo"] . "</td>";

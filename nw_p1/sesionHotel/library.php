@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-$precioVista = 300;
-$precioDesayuno = 150;
-$impuestoRenta = 0.15;
-$impuestoHotelero = 0.18;
+const PRECIO_VISTA = 300;
+const PRECIO_DESAYUNO = 150;
+const IMPUESTO_RENTA = 0.15;
+const IMPUESTO_HOTELERO = 0.18;
 
 function getTipos()
 {
@@ -38,8 +38,37 @@ function generarSelect($nombre, $opciones)
     return $html . "</select>";
 }
 
-function addReserva($reserva)
+function addReserva($nombre, $correo, $telefono, $personas, $habitaciones, $tipo, $vista, $desayuno, $dias)
 {
+    $precio = getTipos()[$tipo];
+    if ($vista == "Sí") {
+        $precio += PRECIO_VISTA;
+    }
+
+    $subtotal = $precio * $habitaciones * $dias;
+    if ($desayuno == "Sí") {
+        $subtotal += PRECIO_DESAYUNO * $personas * $dias;
+    }
+
+    $renta = $subtotal * IMPUESTO_RENTA;
+    $hotelero = $subtotal * IMPUESTO_HOTELERO;
+
+    $reserva = [
+        "nombre" => $nombre,
+        "correo" => $correo,
+        "telefono" => $telefono,
+        "personas" => $personas,
+        "habitaciones" => $habitaciones,
+        "tipo" => $tipo,
+        "vista" => $vista,
+        "desayuno" => $desayuno,
+        "dias" => $dias,
+        "subtotal" => $subtotal,
+        "renta" => $renta,
+        "hotelero" => $hotelero,
+        "total" => $subtotal + $renta + $hotelero
+    ];
+
     $reservas = $_SESSION["reservas"] ?? [];
     $reservas[] = $reserva;
     $_SESSION["reservas"] = $reservas;
