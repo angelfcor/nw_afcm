@@ -1,0 +1,17 @@
+{
+    "name": "unicah/oop1",
+    "description": "Demo Academico para PHP Orientado a Objetos AFCM",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Unicah\\Oop1\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "angelfcor",
+            "email": "angel.fcordova@gmail.com"
+        }
+    ],
+    "require": {}
+}
